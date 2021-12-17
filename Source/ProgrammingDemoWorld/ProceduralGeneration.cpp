@@ -8,6 +8,7 @@ AProceduralGeneration::AProceduralGeneration()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
 	Floor = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("FloorComponent"));
 	SetRootComponent(Floor);
 }
@@ -17,6 +18,13 @@ void AProceduralGeneration::BeginPlay()
 {
 	Super::BeginPlay();
 
+	SpawnItem(CubeClass);
+	SpawnItem(CubeClass);
+	SpawnItem(CubeClass);
+	SpawnItem(CubeClass);
+	SpawnItem(CubeClass);
+	SpawnItem(CubeClass);
+	SpawnItem(CubeClass);
 	SpawnItem(CubeClass);
 }
 
@@ -32,10 +40,14 @@ void AProceduralGeneration::SpawnItem(UClass* ItemToSpawn)
 {
 	float XCoordinate = FMath::FRandRange(-500.0f, 500.0f);
 	float YCoordinate = FMath::FRandRange(-500.0f, 500.0f);
+	float ZCoordiante = FMath::FRandRange(-50.0f, 50.0f);
 
-	FVector Location(0.f, 0.f, 0.f);
-	FRotator Rotation(0.f, 0.f, 0.f);
+	float Yaw = FMath::FRandRange(0.0f, 360.f);
 
-	GetWorld()->SpawnActor<AActor>(ItemToSpawn, FVector(0.0f), FRotator(0.0f));
+	FVector Location(XCoordinate, YCoordinate, ZCoordiante);
+	FRotator Rotation(0.0f, 0.0f, 0.0f);
+
+	GetWorld()->SpawnActor<AActor>(ItemToSpawn,Location, Rotation);
+
 }
 
