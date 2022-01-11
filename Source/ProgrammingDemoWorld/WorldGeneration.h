@@ -30,6 +30,9 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Room, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<AActor> CubeClass;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Room, meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<AActor> TreeClass;
+
 	void SpawnItem(UClass* ItemToSpawn);
 
 };

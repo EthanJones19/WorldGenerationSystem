@@ -26,6 +26,9 @@ void AWorldGeneration::BeginPlay()
 	SpawnItem(CubeClass);
 	SpawnItem(CubeClass);
 	SpawnItem(CubeClass);
+	SpawnItem(TreeClass);
+	SpawnItem(TreeClass);
+	SpawnItem(TreeClass);
 }
 
 // Called every frame
