@@ -33,6 +33,26 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Room, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<AActor> TreeClass;
 
-	void SpawnItem(UClass* ItemToSpawn);
+	//void SpawnItem(UClass* ItemToSpawn);
+
+	float SquareWidth;
+	float GridHeight;
+	float WorldLength;
+	float WorldWidth;
+
+	FVector TopLeftCorner;
+	FVector BottomRightCorner;
+
+	int32 GridXSize;
+	int32 GridYSize;
+
+	float Radius;
+
+
+	void CreateFloorGrid();
+
+	FVector GetRandomPoints(const FVector& TopLeft, const FVector& BottomRight);
+
+	void PlacePointsOnGrid();
 
 };
