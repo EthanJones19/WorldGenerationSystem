@@ -25,6 +25,8 @@ AWorldGeneration::AWorldGeneration()
 	WorldWidth = 1000.0f;
 
 	Radius = 100.0f;
+	//SpawnAmount = 
+	
 }
 
 // Called when the game starts or when spawned
@@ -88,13 +90,13 @@ void AWorldGeneration::CreateFloorGrid()
 	}
 }
 
-FVector AWorldGeneration::GetRandomPoints(const FVector& TopLeft, const FVector& BottomRight)
+FVector AWorldGeneration::GetSpawnPoints(const FVector& TopLeft, const FVector& BottomRight)
 {
-	float RandomXAxis = FMath::FRandRange(TopLeft.X, BottomRight.X);
-	float RandomYAxis = FMath::FRandRange(TopLeft.Y, BottomRight.Y);
+	float SetXAxis = FMath::FRandRange(TopLeft.X, BottomRight.X);
+	float SetYAxis = FMath::FRandRange(TopLeft.Y, BottomRight.Y);
 
 
-	return FVector(RandomXAxis, RandomYAxis, 0.0f);
+	return FVector(SetXAxis, SetYAxis, 0.0f);
 }
 
 void AWorldGeneration::PlacePointsOnGrid()
@@ -105,14 +107,16 @@ void AWorldGeneration::PlacePointsOnGrid()
 		{
 			FVector TopLeft(i * SquareWidth + Radius, j * SquareWidth + Radius, GridHeight);
 			FVector BottomRight(i * SquareWidth + SquareWidth - Radius, j * SquareWidth + SquareWidth - Radius, GridHeight);
-			FVector RandomPoints = GetRandomPoints(TopLeft, BottomRight);
+			FVector SpawnPoints = GetSpawnPoints(TopLeft, BottomRight);
 
-			DrawDebugPoint(GetWorld(), RandomPoints, 5.0f, FColor::Red, true);
-			DrawDebugCircle(GetWorld(), RandomPoints, 25.0f, 48, FColor::Red, true, -1.0f, 0, 2.5f, FVector(0.0f, 1.0f, 0.0f), FVector(1.0f, 0.0f, 0.0f), true);
+			DrawDebugPoint(GetWorld(), SpawnPoints, 5.0f, FColor::Red, true);
+			DrawDebugCircle(GetWorld(), SpawnPoints, 25.0f, 48, FColor::Red, true, -1.0f, 0, 2.5f, FVector(0.0f, 1.0f, 0.0f), FVector(1.0f, 0.0f, 0.0f), true);
 
 			//float Yaw = FMath::FRandRange(0.0f, 10.0f);
-			GetWorld()->SpawnActor<AActor>(TreeClass, RandomPoints, FRotator(0.0f, 0.0f, 0.0f));
-			GetWorld()->SpawnActor<AActor>(CubeClass, RandomPoints, FRotator(0.0f, 0.0f, 0.0f));
+			GetWorld()->SpawnActor<AActor>(TreeClass, SpawnPoints, FRotator(0.0f, 0.0f, 0.0f));
+			//GetWorld()->SpawnActor<AActor>(CubeClass, SpawnPoints, FRotator(0.0f, 0.0f, 0.0f));
+
+			
 		}
 	}
 }

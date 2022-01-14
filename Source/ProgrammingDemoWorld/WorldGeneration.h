@@ -47,11 +47,12 @@ private:
 	int32 GridYSize;
 
 	float Radius;
+	float SpawnAmount;
 
 
 	void CreateFloorGrid();
 
-	FVector GetRandomPoints(const FVector& TopLeft, const FVector& BottomRight);
+	FVector GetSpawnPoints(const FVector& TopLeft, const FVector& BottomRight);
 
 	void PlacePointsOnGrid();
 
