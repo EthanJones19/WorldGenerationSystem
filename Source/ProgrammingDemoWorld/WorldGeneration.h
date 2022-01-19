@@ -36,7 +36,8 @@ private:
 	//void SpawnItem(UClass* ItemToSpawn);
 
 	float SquareWidth;
-	float GridHeight;
+	float GridFloorHeight;
+	float GridTopFloorHeight;
 	float WorldLength;
 	float WorldWidth;
 
@@ -52,8 +53,10 @@ private:
 
 	void CreateFloorGrid();
 
-	FVector GetSpawnPoints(const FVector& TopLeft, const FVector& BottomRight);
+	FVector GetSpawnPoints(const FVector& TopLeft, const FVector& BottomRight, const FVector& MiddleTop);
+
 
 	void PlacePointsOnGrid();
+	void PlacePointsAboveTheGrid();
 
 };
