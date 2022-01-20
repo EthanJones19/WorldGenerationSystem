@@ -48,7 +48,7 @@ private:
 	int32 GridYSize;
 
 	float Radius;
-	float SpawnAmount;
+	int SpawnAmount;
 
 
 	void CreateFloorGrid();

@@ -26,7 +26,7 @@ AWorldGeneration::AWorldGeneration()
 	WorldWidth = 1000.0f;
 
 	Radius = 100.0f;
-	//SpawnAmount = 
+	SpawnAmount = 0;
 	
 }
 
@@ -118,10 +118,12 @@ void AWorldGeneration::PlacePointsOnGrid()
 			DrawDebugPoint(GetWorld(), SpawnPoints, 5.0f, FColor::Red, true);
 			DrawDebugCircle(GetWorld(), SpawnPoints, 25.0f, 48, FColor::Red, true, -1.0f, 0, 2.5f, FVector(0.0f, 1.0f, 0.0f), FVector(1.0f, 0.0f, 0.0f), true);
 
-			//float Yaw = FMath::FRandRange(0.0f, 10.0f);
-			//GetWorld()->SpawnActor<AActor>(TreeClass, SpawnPoints, FRotator(0.0f, 0.0f, 0.0f));
-			GetWorld()->SpawnActor<AActor>(CubeClass, SpawnPoints, FRotator(0.0f, 0.0f, 0.0f));
-
+			
+			if (SpawnAmount < FMath::FRandRange(0, 10))
+			{
+				GetWorld()->SpawnActor<AActor>(CubeClass, SpawnPoints, FRotator(0.0f, 0.0f, 0.0f));
+				SpawnAmount += 1;
+			}
 			
 		}
 	}
