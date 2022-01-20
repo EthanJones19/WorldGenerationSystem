@@ -13,10 +13,12 @@ AWorldGeneration::AWorldGeneration()
 	Floor = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("FloorComponent"));
 	SetRootComponent(Floor);
 
+	//Sets the grid size
 	GridXSize = 5;
 	GridYSize = 5;
-	SquareWidth = 200.0f;
 
+	//Sets the size for squares of the grid
+	SquareWidth = 200.0f;
 	TopLeftCorner = FVector(0.0f);
 	BottomRightCorner = FVector(1000.0f, 1000.0f, 0.0f);
 
@@ -27,6 +29,7 @@ AWorldGeneration::AWorldGeneration()
 
 	Radius = 100.0f;
 	SpawnAmount = 0;
+	TopSpawnAmount = 0;
 	
 }
 
@@ -39,17 +42,6 @@ void AWorldGeneration::BeginPlay()
 	PlacePointsOnGrid();
 	PlacePointsAboveTheGrid();
 	
-	//SpawnItem(CubeClass);
-	//SpawnItem(CubeClass);
-	//SpawnItem(CubeClass);
-	//SpawnItem(CubeClass);
-	//SpawnItem(CubeClass);
-	//SpawnItem(CubeClass);
-	//SpawnItem(CubeClass);
-	//SpawnItem(CubeClass);
-	//SpawnItem(TreeClass);
-	//SpawnItem(TreeClass);
-	//SpawnItem(TreeClass);
 }
 
 // Called every frame
@@ -59,21 +51,6 @@ void AWorldGeneration::Tick(float DeltaTime)
 
 }
 
-//void AWorldGeneration::SpawnItem(UClass* ItemToSpawn)
-//{
-//	float XCoordinate = FMath::FRandRange(-1000.0f, 500.0f);
-//	float YCoordinate = FMath::FRandRange(-1000.0f, 500.0f);
-//	float ZCoordiante = FMath::FRandRange(-50.0f, 50.0f);
-//
-//	float Yaw = FMath::FRandRange(0.0f, 360.f);
-//
-//	FVector Location(XCoordinate, YCoordinate, ZCoordiante);
-//	FRotator Rotation(0.0f, 0.0f, 0.0f);
-//
-//
-//	GetWorld()->SpawnActor<AActor>(ItemToSpawn, Location, Rotation);
-//
-//}
 
 void AWorldGeneration::CreateFloorGrid()
 {
@@ -119,7 +96,7 @@ void AWorldGeneration::PlacePointsOnGrid()
 			DrawDebugCircle(GetWorld(), SpawnPoints, 25.0f, 48, FColor::Red, true, -1.0f, 0, 2.5f, FVector(0.0f, 1.0f, 0.0f), FVector(1.0f, 0.0f, 0.0f), true);
 
 			
-			if (SpawnAmount < FMath::FRandRange(0, 10))
+			if (SpawnAmount < FMath::FRandRange(0, 25))
 			{
 				GetWorld()->SpawnActor<AActor>(CubeClass, SpawnPoints, FRotator(0.0f, 0.0f, 0.0f));
 				SpawnAmount += 1;
@@ -137,17 +114,19 @@ void AWorldGeneration::PlacePointsAboveTheGrid()
 		{
 			FVector TopLeft(i * SquareWidth + Radius, j * SquareWidth + Radius, GridTopFloorHeight);
 			FVector BottomRight(i * SquareWidth + SquareWidth - Radius, j * SquareWidth + SquareWidth - Radius, GridTopFloorHeight);
-			FVector MiddleTop(200.0f);
+			FVector MiddleTop(100.0f);
 			FVector TopSpawnPoints = GetSpawnPoints(TopLeft, BottomRight, MiddleTop);
 
 
 			DrawDebugPoint(GetWorld(), TopSpawnPoints, 5.0f, FColor::Red, true);
 			DrawDebugCircle(GetWorld(), TopSpawnPoints, 25.0f, 48, FColor::Red, true, -1.0f, 0, 2.5f, FVector(0.0f, 1.0f, 0.0f), FVector(1.0f, 0.0f, 0.0f), true);
 
-			//float Yaw = FMath::FRandRange(0.0f, 10.0f);
-			GetWorld()->SpawnActor<AActor>(TreeClass, TopSpawnPoints, FRotator(0.0f, 0.0f, 0.0f));
-			//GetWorld()->SpawnActor<AActor>(CubeClass, TopSpawnPoints, FRotator(0.0f, 0.0f, 0.0f));
 
+			if (TopSpawnAmount < FMath::FRandRange(0, 15))
+			{
+				GetWorld()->SpawnActor<AActor>(TreeClass, TopSpawnPoints, FRotator(0.0f, 0.0f, 0.0f));
+				TopSpawnAmount += 1;
+			}
 
 		}
 	}

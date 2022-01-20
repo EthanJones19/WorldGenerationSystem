@@ -49,7 +49,7 @@ private:
 
 	float Radius;
 	int SpawnAmount;
-
+	int TopSpawnAmount;
 
 	void CreateFloorGrid();
 
