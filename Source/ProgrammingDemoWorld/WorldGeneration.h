@@ -33,8 +33,6 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Room, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<AActor> TreeClass;
 
-	//void SpawnItem(UClass* ItemToSpawn);
-
 	float SquareWidth;
 	float GridFloorHeight;
 	float GridTopFloorHeight;
@@ -54,7 +52,6 @@ private:
 	void CreateFloorGrid();
 
 	FVector GetSpawnPoints(const FVector& TopLeft, const FVector& BottomRight, const FVector& MiddleTop);
-
 
 	void PlacePointsOnGrid();
 	void PlacePointsAboveTheGrid();
