@@ -22,3 +22,5 @@ Using different actors, replace following  actor classes with other actor classe
 ##How to Play
 - Click on .exe folder and it will generate the world differently each time you play .exe folder.
 - Alt F4 keys to close out of the game.
+- WASD to move around
+- Moving the mouse is to look around
