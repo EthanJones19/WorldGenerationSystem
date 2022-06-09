@@ -11,8 +11,8 @@ AWorldGeneration::AWorldGeneration()
 	SetRootComponent(Floor);
 
 	//Sets the grid size
-	GridXSize = 5;
-	GridYSize = 5;
+	GridXSize = 20;
+	GridYSize = 20;
 
 	//Sets the size for squares of the grid
 	SquareWidth = 200.0f;
@@ -106,7 +106,7 @@ void AWorldGeneration::PlacePointsOnGrid()
 			DrawDebugCircle(GetWorld(), SpawnPoints, 25.0f, 48, FColor::Red, true, -1.0f, 0, 2.5f, FVector(0.0f, 1.0f, 0.0f), FVector(1.0f, 0.0f, 0.0f), true);
 
 			//Spawns the amount of actors within a random range.
-			if (SpawnAmount < FMath::FRandRange(0, 25))
+			if (SpawnAmount < FMath::FRandRange(Min, Max))
 			{
 				GetWorld()->SpawnActor<AActor>(CubeClass, SpawnPoints, FRotator(0.0f, 0.0f, 0.0f));
 				SpawnAmount += 1;
@@ -133,7 +133,7 @@ void AWorldGeneration::PlacePointsAboveTheGrid()
 			DrawDebugCircle(GetWorld(), TopSpawnPoints, 25.0f, 48, FColor::Red, true, -1.0f, 0, 2.5f, FVector(0.0f, 1.0f, 0.0f), FVector(1.0f, 0.0f, 0.0f), true);
 
 			//Spawns the amount of actors within a random range
-			if (TopSpawnAmount < FMath::FRandRange(0, 15))
+			if (TopSpawnAmount < FMath::FRandRange(Min, Max))
 			{
 				GetWorld()->SpawnActor<AActor>(TreeClass, TopSpawnPoints, FRotator(0.0f, 0.0f, 0.0f));
 				TopSpawnAmount += 1;

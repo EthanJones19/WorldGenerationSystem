@@ -49,6 +49,8 @@ private:
 	int SpawnAmount;
 	int TopSpawnAmount;
 
+
+
 	void CreateFloorGrid();
 
 	FVector GetSpawnPoints(const FVector& TopLeft, const FVector& BottomRight, const FVector& MiddleTop);
@@ -56,4 +58,10 @@ private:
 	void PlacePointsOnGrid();
 	void PlacePointsAboveTheGrid();
 
+public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float Min = 0.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float Max = 0.0f;
 };
